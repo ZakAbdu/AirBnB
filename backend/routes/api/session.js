@@ -1,10 +1,10 @@
 // backend/routes/api/session.js
 const express = require('express')
-const router = express.Router();
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
+const router = express.Router();
 // Log in
 router.post(
     '/',
