@@ -49,14 +49,36 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true
+        notEmpty: true,
+        len: [0, 30],
+        isNotEmail(value) {
+          if(Validator.isEmail(value)) {
+            throw new Error('Cannot be an email.');
           }
+        },
+        isOnlyLetters(value) {
+          if(!Validator.isAlpha(value)) {
+            throw new Error('Name can only be letters')
+          }
+        }
+     }
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true
+        notEmpty: true,
+        len: [0, 30],
+        isNotEmail(value) {
+          if(Validator.isEmail(value)) {
+            throw new Error('Cannot be an email.');
+          }
+        },
+        isOnlyLetters(value) {
+          if(!Validator.isAlpha(value)) {
+            throw new Error('Name can only be letters')
+          }
+        }
       }
     },
     username: {
