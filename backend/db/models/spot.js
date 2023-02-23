@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Spot.belongsTo(models.User, {foreignKey: 'ownerId'})
+      Spot.belongsTo(models.User, {foreignKey: 'ownerId', as: 'Owner'})
       Spot.hasMany(models.Review, {foreignKey: 'spotId'})
       Spot.hasMany(models.Booking, {foreignKey: 'spotId'})
       Spot.hasMany(models.SpotImage, {foreignKey: 'spotId'})
@@ -70,12 +70,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Spot',
-    defaultScope: {
-      attributes: {
-        exclude: ['createdAt', 'updatedAt', 'latitude', 'longitude']
-      }
-    }
+    modelName: 'Spot'
   });
   return Spot;
 };
