@@ -77,9 +77,6 @@ router.get('/:spotId', async(req, res) => {
       return res.json({
           Spots: spots
       })
-
-    
-
 })
 
 // Create a spot
