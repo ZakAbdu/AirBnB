@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const { all } = require('../../routes/api');
 module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     /**
@@ -13,15 +14,17 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Review.belongsTo(models.User, {foreignKey: 'userId'})
       Review.belongsTo(models.Spot, {foreignKey: 'spotId'})
-      Review.hasMany(models.ReviewImage, {foreignKey: 'reviewId'})
+      Review.hasMany(models.ReviewImage, {foreignKey: 'reviewId', onDelete: 'CASCADE'})
     }
   }
   Review.init({
     userId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     spotId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     review: {
       type: DataTypes.STRING,
@@ -31,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
+        isInt: true,
         min: 0,
         max: 5
       }

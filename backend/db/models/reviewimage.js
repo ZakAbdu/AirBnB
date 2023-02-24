@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   ReviewImage.init({
     reviewId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     url: {
       type: DataTypes.STRING,
@@ -24,12 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'ReviewImage',
-    defaultScope: {
-      attributes: {
-        exclude: ['createdAt', 'updatedAt']
-      }
-    }
+    modelName: 'ReviewImage'
   });
   return ReviewImage;
 };

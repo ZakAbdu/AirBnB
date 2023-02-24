@@ -42,47 +42,19 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
-      User.hasMany(models.Spot, {foreignKey: 'ownerId'})
-      User.hasMany(models.Review, {foreignKey: 'userId'})
-      User.hasMany(models.Booking, {foreignKey: 'userId'})
+      User.hasMany(models.Spot, {foreignKey: 'ownerId', onDelete: 'CASCADE'})
+      User.hasMany(models.Review, {foreignKey: 'userId', onDelete: 'CASCADE'})
+      User.hasMany(models.Booking, {foreignKey: 'userId', onDelete: 'CASCADE'})
     }
   };
   User.init({
     firstName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        len: [0, 30],
-        isNotEmail(value) {
-          if(Validator.isEmail(value)) {
-            throw new Error('Cannot be an email.');
-          }
-        },
-        isOnlyLetters(value) {
-          if(!Validator.isAlpha(value)) {
-            throw new Error('Name can only be letters')
-          }
-        }
-     }
+      allowNull: false
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-        len: [0, 30],
-        isNotEmail(value) {
-          if(Validator.isEmail(value)) {
-            throw new Error('Cannot be an email.');
-          }
-        },
-        isOnlyLetters(value) {
-          if(!Validator.isAlpha(value)) {
-            throw new Error('Name can only be letters')
-          }
-        }
-      }
+      allowNull: false
     },
     username: {
       type: DataTypes.STRING,

@@ -82,14 +82,14 @@ router.get('/:spotId', async(req, res) => {
 // Create a spot
 router.post('/', async(req, res) => {
     
-    const { address, city, state, country, latitude, longitude, name, description, price } = req.body
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
     const newSpot = await Spot.create({
         address,
         city,
         state,
         country,
-        latitude,
-        longitude,
+        lat,
+        lng,
         name,
         description,
         price
@@ -114,7 +114,7 @@ router.post('/:spotId/images', async(req, res) => {
 // Updates and return an existing spot
 
 router.put('/:spotId', async (req, res) => {
-     const { address, city, state, country, latitude, longitude, name, description, price } = req.body;
+     const { address, city, state, country, lat, lng, name, description, price } = req.body;
      const spot = await Spot.findByPk(req.params.spotId);
      if(!spot) res.status(404).json({
         message: "Spot couldn't be found",
@@ -124,8 +124,8 @@ router.put('/:spotId', async (req, res) => {
      spot.city = city
      spot.state = state
      spot.country = country
-     spot.latitude = latitude
-     spot.longitude = longitude
+     spot.lat = lat
+     spot.lng = lng
      spot.name = name
      spot.description = description
      spot.price = price
