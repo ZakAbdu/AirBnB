@@ -7,7 +7,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors, validateReview } = require('../../utils/validation.js');
 const sequelize = require('sequelize');
 const { reviewExists, usersReview } = require('../../utils/error-handlers.js');
-const e = require('express');
+
 
 
 // Get all reviews of the Current User
