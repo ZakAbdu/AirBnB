@@ -16,12 +16,10 @@ const spotExists = async (req, res, next) => {
   let spot = await Spot.findByPk(spotId);
 
   if (!spot) {
-      let err = {};
-      err.title = "Not found"
-      err.response = "Couldn't find a Spot with the specified id"
-      err.status = 404;
-      err.message = "Spot couldn't be found";
-      return next(err);
+    return res.status(404).json({
+        message: "Spot couldn't be found",
+        statusCode: 404
+      })
   }
   return next();
 };
@@ -63,11 +61,10 @@ const reviewExists = async (req, res, next) => {
   const review = await Review.findByPk(reviewId)
 
   if (!review) {
-      const err = {}
-      err.title = "Couldn't find a Review with the specified id";
-      err.message = "Review couldn't be found";
-      err.status = 404;
-      return next(err)
+    return res.status(404).json({
+        message: "Review couldn't be found",
+        statusCode: 404,
+      })
   };
   return next();
 };
@@ -78,11 +75,10 @@ const bookingExists = async (req, res, next) => {
   let booking = await Booking.findByPk(bookingId);
 
   if (!booking) {
-      const err = {};
-      err.title = "Couldn't find a booking with the specific id"
-      err.status = 404;
-      err.message = "Booking couldn't be found";
-      return next(err)
+    return res.status(404).json({
+        message: "Booking couldn't be found",
+        statusCode: 404,
+      })
   }
   return next();
 };
