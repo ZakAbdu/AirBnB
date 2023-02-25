@@ -83,6 +83,22 @@ const bookingExists = async (req, res, next) => {
   return next();
 };
 
+//If booking doesnt belong to user
+const usersBooking = async (req, res, next) => {
+    const { bookingId } = req.params;
+    const user = req.user
+    const booking = await Booking.findByPk(bookingId);
+  
+    if (booking.userId !== user.id) {
+        const err = {};
+        err.title = "Authorization error";
+        err.status = 403;
+        err.message = "Booking doesn't belong to current user";
+        return next(err);
+    }
+    return next();
+  };
+
 
 module.exports = {
   spotExists,
@@ -90,5 +106,6 @@ module.exports = {
   usersReview,
   reviewExists,
   bookingExists,
+  usersBooking,
   convertDate
 }
