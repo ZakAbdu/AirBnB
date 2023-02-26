@@ -44,6 +44,30 @@ module.exports = {
         name: 'Sin City Jewel',
         description: 'This 3-story home is the perfect destination for whatever your trip entails!',
         price: 299.99
+      },
+      {
+        ownerId: 4,
+        address: '0325 March Dr.',
+        city: 'New York',
+        state: 'New York',
+        country: 'USA',
+        lat: 40.7128,
+        lng: 74.0060,
+        name: 'Big Apple Penthouse',
+        description: 'Amazing highrise located in downtown Manhattan. Jaw-dropping views and minutes from Central Park and other major attractions.',
+        price: 499.99
+      },
+      {
+        ownerId: 4,
+        address: '1234 Fly St.',
+        city: 'Miami',
+        state: 'Florida',
+        country: 'USA',
+        lat: 25.7617,
+        lng: 80.1918,
+        name: 'Diamond on Biscayne',
+        description: "This luxurious penthouse suite is located right in downtown Miami on Ocean Dr and Biscayne Blvd. Views and nightlife like no other.",
+        price: 699.99
       }
     ], {});
     
@@ -53,7 +77,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      city: { [Op.in]: ['San Diego', 'San Francisco', 'Las Vegas'] }
+      city: { [Op.in]: ['San Diego', 'San Francisco', 'Las Vegas', 'New York', 'Miami'] }
     }, {})
   }
 };

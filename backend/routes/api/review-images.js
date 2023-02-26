@@ -4,7 +4,7 @@ const router = express.Router();
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { ReviewImage } = require('../../db/models');
 
-// Delete an existing image for a Review
+// Delete a Review Image
 router.delete('/:imageId', requireAuth, async(req, res, next) => {
     const { imageId } = req.params;
     const { id: userId } = req.user;

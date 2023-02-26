@@ -6,7 +6,7 @@ const { User, Spot, Review, SpotImage, ReviewImage, Booking } = require('../../d
 const { check } = require('express-validator');
 const { handleValidationErrors, validateBooking } = require('../../utils/validation');
 const sequelize = require('sequelize');
-const { bookingExists, convertDate, usersBooking } = require('../../utils/error-handlers')
+const { bookingExists, convertDate, bookingOwner } = require('../../utils/error-handlers')
 
 // Get Current User's Bookings
 router.get('/current', requireAuth, async(req, res) => {
@@ -58,7 +58,7 @@ router.get('/current', requireAuth, async(req, res) => {
 })
 
 // Edit a booking
-router.put('/:bookingId', requireAuth, bookingExists, validateBooking, usersBooking, async (req, res) => {
+router.put('/:bookingId', requireAuth, bookingExists, validateBooking, bookingOwner, async (req, res) => {
     const { bookingId } = req.params;
     const user = req.user;
     let { startDate, endDate } = req.body;
@@ -142,7 +142,7 @@ router.put('/:bookingId', requireAuth, bookingExists, validateBooking, usersBook
   
 
 // Delete a booking
-router.delete('/:bookingId', requireAuth, bookingExists, usersBooking, restoreUser, async(req, res, next) => {
+router.delete('/:bookingId', requireAuth, bookingExists, bookingOwner, restoreUser, async(req, res, next) => {
     const { user } = req;
     const bookingId = req.params.bookingId;
 

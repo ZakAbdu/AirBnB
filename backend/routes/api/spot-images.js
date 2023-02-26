@@ -4,6 +4,7 @@ const router = express.Router();
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { SpotImage } = require('../../db/models');
 
+// Delete a Spot Image
 router.delete('/:imageId', requireAuth, async(req, res, next) => {
     const { imageId } = req.params;
     const { id: userId} = req.user;

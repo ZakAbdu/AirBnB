@@ -23,7 +23,42 @@ module.exports = {
         url: 'https://www.reviewjournal.com/wp-content/uploads/2022/03/16244880_web1_copy_4soaringbirdcourt-108.jpg?crop=1',
         preview: false,
         spotId: 3
-      }
+      },
+      {
+        url: 'https://photos.zillowstatic.com/fp/9f5c92bb314e1439f88f88d4028e4a0a-p_e.jpg',
+        preview: true,
+        spotId: 1
+      },
+      {
+        url: 'https://photos.zillowstatic.com/fp/1107e2124d828cbc8fde5efb09a3067a-p_e.jpg',
+        preview: true,
+        spotId: 3
+      },
+      {
+        url: 'https://imageio.forbes.com/specials-images/imageserve/60d25ac770164281ac67c3cf/Three-story-contemporary-home-in-San-Francisco/960x0.jpg?format=jpg&width=960',
+        preview: true,
+        spotId: 2
+      },
+      {
+        url: 'https://www.jamesedition.com/stories/wp-content/uploads/2020/10/18.jpg',
+        preview: true,
+        spotId: 4
+      },
+       {
+        url: 'https://s.wsj.net/public/resources/images/BN-HS150_0402pp_M_20150402130345.jpg',
+        preview: true,
+        spotId: 5
+       },
+       {
+        url: 'https://galeriemagazine.com/wp-content/uploads/2019/01/Dining_3-1920x1200.jpg',
+        preview: false,
+        spotId: 4
+       },
+       {
+        url: 'https://www.57ocean.com/wp-content/themes/57ocean/images/57OCEAN_PH_01_Living.jpg',
+        preview: false,
+        spotId: 5
+       }
     ], {})
   },
 
@@ -31,7 +66,7 @@ module.exports = {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1, 2, 3] }
+      spotId: { [Op.in]: [1, 2, 3, 4, 5] }
     }, {})
   }
 };

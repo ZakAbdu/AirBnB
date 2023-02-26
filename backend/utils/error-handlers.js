@@ -84,7 +84,7 @@ const bookingExists = async (req, res, next) => {
 };
 
 //If booking doesnt belong to user
-const usersBooking = async (req, res, next) => {
+const bookingOwner = async (req, res, next) => {
     const { bookingId } = req.params;
     const user = req.user
     const booking = await Booking.findByPk(bookingId);
@@ -106,6 +106,6 @@ module.exports = {
   usersReview,
   reviewExists,
   bookingExists,
-  usersBooking,
+  bookingOwner,
   convertDate
 }
